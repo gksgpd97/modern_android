@@ -63,8 +63,8 @@ class MainViewModel @Inject constructor(private val repository: MovieRepository)
     //var nowPlayingMovies: List<Movie> by mutableStateOf(emptyList()) // state값이 변하면 recomposition이 일어나고 화면이 갱신됨
 
     //2. flow로 쓰는법
-    val _state = MutableStateFlow(emptyList<Movie>())
-    var nowPlayingMovies = _state.asStateFlow()
+    private val _state = MutableStateFlow(emptyList<Movie>())
+    val nowPlayingMovies = _state.asStateFlow()
     fun initNowPlayingMovies() {
         //외부IO는 비동기식으로 데이터를 받아와야 함
         //내가 기존에 알던 리트로핏 데이터 받아오는 방식은 UI쓰레드가 아니라 별도의 쓰레드에서 구성해야해서 콜백도 많고 복잡했었음

@@ -63,6 +63,7 @@ fun MovieScreen() {
 fun MovieList() {
     //val mainViewModel = viewModel<MainViewModel>() //뷰모델은 내부적으로 싱글톤으로 객체 생성 됨
     val mainViewModel = hiltViewModel<MainViewModel>() //의존성주입된 뷰모델은 hilt가 지원하는 뷰모델 써야함
+    val movies = mainViewModel.nowPlayingMovies.collectAsState().value
     LazyColumn {
         //1.
 //        items(mainViewModel.nowPlayingMovies) {
@@ -70,7 +71,7 @@ fun MovieList() {
 //        }
 
         //2. 이쒸 수업 얼레벌레 끝나서 못고침
-        items(mainViewModel.nowPlayingMovies.collectAsState().value){
+        items(movies){
             MovieItem(movie = it)
         }
     }
